@@ -19,8 +19,13 @@ function renderList() {
 
 function renderTotal() {
   const total = sessions.reduce((sum, session) => sum + session.minutes, 0);
-  document.getElementById("total").textContent = "Total: " + total + " min";
+  const hours = Math.floor(total / 60);
+  const remainder = total % 60;
+  const label = hours > 0 ? hours + " hr " + remainder + " min" : remainder + " min";
+  document.getElementById("total").textContent = "Total: " + label;
+
 }
+
 
 document.getElementById("session-form").addEventListener("submit", function (event) {
   event.preventDefault();
