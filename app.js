@@ -26,12 +26,26 @@ function renderList() {
   }
 }
 
+function currentStreak() {
+  let streak = 0;
+  for (let i = sessions.length - 1; i >= 0; i--) {
+    if (sessions[i].minutes >= 25) {
+      streak++;
+    } else {
+      break;
+    }
+  }
+  return streak;
+}
+
 function renderTotal() {
   const total = sessions.reduce((sum, session) => sum + session.minutes, 0);
   const hours = Math.floor(total / 60);
   const remainder = total % 60;
   const label = hours > 0 ? hours + " hr " + remainder + " min" : remainder + " min";
   document.getElementById("total").textContent = "Total: " + label;
+  document.getElementById("streak").textContent =
+    "Focus streak: " + currentStreak() + " session(s) of 25+ min";
 
 }
 
