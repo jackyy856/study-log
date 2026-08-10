@@ -2,10 +2,19 @@
 const sessions = [];
 
 function addSession(subject, minutes) {
-  sessions.push({ subject: subject, minutes: Number(minutes) });
+  const cleanSubject = subject.trim();
+  const parsedMinutes = Number(minutes);
+  const error = document.getElementById("error");
+  if (cleanSubject === "" || !Number.isFinite(parsedMinutes) || parsedMinutes <= 0) {
+    error.textContent = "Enter a subject and a positive number of minutes.";
+    return;
+  }
+  error.textContent = "";
+  sessions.push({ subject: cleanSubject, minutes: parsedMinutes });
   renderList();
   renderTotal();
 }
+
 
 function renderList() {
   const list = document.getElementById("session-list");

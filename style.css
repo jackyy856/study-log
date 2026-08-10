@@ -18,4 +18,6 @@ h1 {
 
 #total {
   margin-top: 1rem;
+  font-weight: 600;
+  font-size: 1.1rem;
 }
